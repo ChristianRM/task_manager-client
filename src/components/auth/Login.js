@@ -60,7 +60,7 @@ const Login = () => {
                             value="Login" />
                     </div>
                 </form>
-                <Link to={'/register'} className="enlace-cuenta">Crear una cuenta</Link>
+                <Link to={'/register'} className="enlace-cuenta">Create an account</Link>
             </div>
         </div>
     );
