@@ -1,4 +1,6 @@
 import AddProject from "../projects/AddProject";
+import ListProjects from "../projects/ListProjects";
+
 const Sidebar = () => {
     return (
         <aside>
@@ -8,6 +10,7 @@ const Sidebar = () => {
                 <h2>
                     Tus proyectos
                 </h2>
+                <ListProjects />
             </div>
         </aside>
     );
