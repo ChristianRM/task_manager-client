@@ -5,7 +5,7 @@ const AddProject = () => {
 
     // Obtenerr el state del formulario
     const projectsContext = useContext(projectContext)
-    const { form } = projectsContext;
+    const { form, showForm } = projectsContext;
 
     // State para proyecto
     const [project, setProject] = useState({
@@ -38,33 +38,35 @@ const AddProject = () => {
         <Fragment>
             <button
                 type="button"
-                className=" btn btn-block btn-primario">
+                className=" btn btn-block btn-primario"
+                onClick={() => showForm()}
+            >
                 New Proyect
             </button>
             {
                 form ?
-                (
-                    <form
-                        className="formulario-nuevo-proyecto"
-                        onSubmit={onSubmitProyecto}
-                    >
-                        <input
-                            type="text"
-                            className="input-text"
-                            placeholder="Project Name"
-                            name="name"
-                            value={name}
-                            onChange={onChangeProject}
-                        />
-                        <input
-                            type="submit"
-                            className="btn btn-primario btn-block"
-                            value="Add Project"
+                    (
+                        <form
+                            className="formulario-nuevo-proyecto"
+                            onSubmit={onSubmitProyecto}
+                        >
+                            <input
+                                type="text"
+                                className="input-text"
+                                placeholder="Project Name"
+                                name="name"
+                                value={name}
+                                onChange={onChangeProject}
+                            />
+                            <input
+                                type="submit"
+                                className="btn btn-primario btn-block"
+                                value="Add Project"
 
-                        />
-                    </form>
-                )
-                : null
+                            />
+                        </form>
+                    )
+                    : null
             }
         </Fragment>
 
