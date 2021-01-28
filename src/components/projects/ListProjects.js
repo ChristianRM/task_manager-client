@@ -1,6 +1,5 @@
 import Project from "./Project";
 import { useContext, useEffect } from "react";
-import Projects from "./Projects";
 import projectContext from "../../context/projects/projectContext";
 
 const ListProjects = () => {
@@ -10,7 +9,7 @@ const ListProjects = () => {
 
     // Obtener proyectos cuando carga el componente
     useEffect(() => {
-        getProjects();
+        getProjects()
     }, [])
 
     // Revisar que projects no este vacio 
