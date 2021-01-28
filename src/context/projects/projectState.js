@@ -1,15 +1,22 @@
 import { useReducer } from "react";
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
-import { FORM_PROJECT } from "../../types";
+import { 
+    FORM_PROJECT,
+    GET_PROJECTS
+} from "../../types";
+
+
 
 const ProjectState = props => {
+    const projects = [
+        { id: 1, name: 'tienda virtual' },
+        { id: 2, name: 'intranet' },
+        { id: 3, name: 'diseño de sitio web' }
+    ]
+
     const initialState = {
-        projects: [
-            { id: 1, name: 'tienda virtual' },
-            { id: 2, name: 'intranet' },
-            { id: 3, name: 'diseño de sitio web' }
-        ],
+        projects:  [],
         form: false
     }
 
@@ -23,13 +30,22 @@ const ProjectState = props => {
         })
     }
 
+    // Obtener los proyectos
+    const getProjects = () => {
+        dispatch({
+            type: GET_PROJECTS,
+            payload: projects
+        })
+    }
+
     // Chcecar value luego
     return (
         <projectContext.Provider
             value={{
                 projects: state.projects,
                 form: state.form,
-                showForm
+                showForm,
+                getProjects
             }}>
             {props.children}
         </projectContext.Provider>
