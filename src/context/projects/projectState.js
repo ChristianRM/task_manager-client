@@ -6,7 +6,8 @@ import {
     GET_PROJECTS,
     ADD_PROJECT,
     FORM_VALIDATION,
-    SELECTED_PROJECT
+    SELECTED_PROJECT,
+    DELETE_PROJECT
 } from "../../types";
 
 
@@ -68,6 +69,14 @@ const ProjectState = props => {
         })
     }
 
+    // Elimina el proyecto que el usuario dio click
+    const deleteProject = projectId => {
+        dispatch({
+            type: DELETE_PROJECT,
+            payload: projectId
+        })
+    }
+
     // Chcecar value luego
     return (
         <projectContext.Provider
@@ -80,7 +89,8 @@ const ProjectState = props => {
                 getProjects,
                 addProject,
                 showError,
-                selectProject
+                selectProject,
+                deleteProject
             }}>
             {props.children}
         </projectContext.Provider>

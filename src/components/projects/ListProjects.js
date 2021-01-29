@@ -13,15 +13,15 @@ const ListProjects = () => {
     }, [])
 
     // Revisar que projects no este vacio 
-    if(projects.lenght === 0 ) return null;
+    if (projects.length === 0) return <p>No projects created</p>;
 
-    return ( 
+    return (
         <ul className="listado-proyectos">
             {projects.map(project => (
-                <Project key={project.id} project={project } />
-            ))} 
+                <Project key={project.id} project={project} />
+            ))}
         </ul>
-     );
+    );
 }
- 
+
 export default ListProjects;
