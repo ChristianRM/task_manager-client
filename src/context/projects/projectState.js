@@ -5,7 +5,8 @@ import {
     FORM_PROJECT,
     GET_PROJECTS,
     ADD_PROJECT,
-    FORM_VALIDATION
+    FORM_VALIDATION,
+    SELECTED_PROJECT
 } from "../../types";
 
 
@@ -20,7 +21,8 @@ const ProjectState = props => {
     const initialState = {
         projects:  [],
         form: false,
-        formError: false
+        formError: false,
+        selectedProject: null
     }
 
     // Dispatch para ejecutar las acciones
@@ -58,6 +60,14 @@ const ProjectState = props => {
         })
     }
 
+    // Selecciona el proyecto que el usuario dio click
+    const selectProject = projectId => {
+        dispatch({
+            type: SELECTED_PROJECT,
+            payload: projectId
+        })
+    }
+
     // Chcecar value luego
     return (
         <projectContext.Provider
@@ -65,10 +75,12 @@ const ProjectState = props => {
                 projects: state.projects,
                 form: state.form,
                 formError: state.formError,
+                selectedProject: state.selectedProject,
                 showForm,
                 getProjects,
                 addProject,
-                showError
+                showError,
+                selectProject
             }}>
             {props.children}
         </projectContext.Provider>
