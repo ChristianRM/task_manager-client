@@ -13,13 +13,8 @@ const ListTasks = () => {
     // Array destructuring para extraer el proyecto actual
     const [actualProject] = selectedProject;
 
-    const tasksProject = [
-        { name: 'Choose platform', state: true },
-        { name: 'Choose colors', state: true },
-        { name: 'Choose payment', state: false },
-        { name: 'Choose hosting', state: false }
-    ]
-
+    const tasksProject = [];
+    
     // Elimina un proyecto
     const onClickDelete = () => {
         deleteProject(actualProject.id)
