@@ -1,11 +1,16 @@
 import { Fragment, useContext } from "react";
 import Task from "./Task";
 import projectContext from "../../context/projects/projectContext";
+import taskContext from "../../context/tasks/taskContext";
 
 const ListTasks = () => {
     // Extraer proyects de state inicial
     const projectsContext = useContext(projectContext)
     const { selectedProject, deleteProject } = projectsContext;
+
+    // Obtener las tareas del proyecto
+    const tasksContext = useContext(taskContext)
+    const { tasksProject } = tasksContext;
 
     // Si no hay proyecto seleccionado
     if(!selectedProject) return <h2>Select a project</h2>
@@ -13,8 +18,6 @@ const ListTasks = () => {
     // Array destructuring para extraer el proyecto actual
     const [actualProject] = selectedProject;
 
-    const tasksProject = [];
-    
     // Elimina un proyecto
     const onClickDelete = () => {
         deleteProject(actualProject.id)
