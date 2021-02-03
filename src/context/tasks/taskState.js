@@ -5,24 +5,25 @@ import TaskReducer from "./taskReducer";
 import { 
     TASKS_PROJECT,
     ADD_TASK,
-    TASK_VALIDATION
+    TASK_VALIDATION,
+    DELETE_TASK
  } from "../../types";
 
 const TaskState = props => {
     const initialState = {
         tasks: [
-            { name: 'Choose platform', status: true, projectId: 1 },
-            { name: 'Choose colors', status: true, projectId: 2 },
-            { name: 'Choose payment', status: false, projectId: 3 },
-            { name: 'Choose hosting', status: false,projectId: 4 },
-            { name: 'Choose platform', status: true, projectId: 2 },
-            { name: 'Choose colors', status: true, projectId: 3 },
-            { name: 'Choose payment', status: false, projectId: 3 },
-            { name: 'Choose hosting', status: false,projectId: 4 },
-            { name: 'Choose platform', status: true, projectId: 2 },
-            { name: 'Choose colors', status: true, projectId: 1 },
-            { name: 'Choose payment', status: false, projectId: 1 },
-            { name: 'Choose hosting', status: false,projectId: 2 },
+            { id: 0, name: 'Choose platform', status: true, projectId: 1 },
+            { id: 1, name: 'Choose colors', status: true, projectId: 2 },
+            { id: 2, name: 'Choose payment', status: false, projectId: 3 },
+            { id: 3, name: 'Choose hosting', status: false,projectId: 4 },
+            { id: 4, name: 'Choose platform', status: true, projectId: 2 },
+            { id: 5, name: 'Choose colors', status: true, projectId: 3 },
+            { id: 6, name: 'Choose payment', status: false, projectId: 3 },
+            { id: 7, name: 'Choose hosting', status: false,projectId: 4 },
+            { id: 8, name: 'Choose platform', status: true, projectId: 2 },
+            { id: 9, name: 'Choose colors', status: true, projectId: 1 },
+            { id: 10, name: 'Choose payment', status: false, projectId: 1 },
+            { id: 11, name: 'Choose hosting', status: false,projectId: 2 },
         ],
         tasksProject: null,
         errorTask: false
@@ -56,6 +57,13 @@ const TaskState = props => {
         })
     }
 
+    // Eliminar tarea por id
+    const deleteTask = id => {
+        dispatch({
+            type: DELETE_TASK,
+            payload: id
+        })
+    }
     return (
         <TaskContext.Provider
         value={{
@@ -64,7 +72,8 @@ const TaskState = props => {
             errorTask: state.errorTask,
             getTasks,
             addTask,
-            taskValidation
+            taskValidation,
+            deleteTask
         }}>
             {props.children}
         </TaskContext.Provider>

@@ -1,8 +1,9 @@
-import { 
+import {
     ADD_TASK,
+    DELETE_TASK,
     TASKS_PROJECT,
     TASK_VALIDATION
- } from "../../types";
+} from "../../types";
 
 export default (state, action) => {
     switch (action.type) {
@@ -21,6 +22,11 @@ export default (state, action) => {
             return {
                 ...state,
                 errorTask: true
+            }
+        case DELETE_TASK:
+            return {
+                ...state,
+                tasks: state.tasks.filter(task => task.id !== action.payload)
             }
         default:
             return state;
