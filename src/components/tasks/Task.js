@@ -4,7 +4,7 @@ const Task = ({ task }) => {
             <p>{task.name}</p>
             <div className="estado">
                 {
-                    task.state ?
+                    task.status ?
                         (
                             <button
                                 type="button"
