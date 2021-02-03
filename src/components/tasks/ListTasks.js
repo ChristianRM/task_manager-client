@@ -2,6 +2,7 @@ import { Fragment, useContext } from "react";
 import Task from "./Task";
 import projectContext from "../../context/projects/projectContext";
 import taskContext from "../../context/tasks/taskContext";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const ListTasks = () => {
     // Extraer proyects de state inicial
@@ -13,7 +14,7 @@ const ListTasks = () => {
     const { tasksProject } = tasksContext;
 
     // Si no hay proyecto seleccionado
-    if(!selectedProject) return <h2>Select a project</h2>
+    if (!selectedProject) return <h2>Select a project</h2>
 
     // Array destructuring para extraer el proyecto actual
     const [actualProject] = selectedProject;
@@ -30,7 +31,20 @@ const ListTasks = () => {
             <ul className="listado-tareas">
                 {tasksProject.length === 0
                     ? (<li className="tarea"><p>No hay tareas</p></li>)
-                    : tasksProject.map(task => (<Task key={task.id} task={task} />))
+                    :
+                    <TransitionGroup>
+                        {
+                            tasksProject.map(task => (
+                                <CSSTransition 
+                                key={task.id}
+                                timeout={200}
+                                classNames="tarea"
+                                >
+                                    <Task task={task} />
+                                </CSSTransition>
+                            ))
+                        }
+                    </TransitionGroup>
                 }
             </ul>
             <button
