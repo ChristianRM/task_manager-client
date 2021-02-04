@@ -9,7 +9,7 @@ const Task = ({ task }) => {
 
     // Obtener la funcion del context de tareas
     const tasksContext = useContext(taskContext)
-    const { deleteTask, getTasks } = tasksContext;
+    const { deleteTask, getTasks, toggleTaskStatus } = tasksContext;
 
     // Extraer el proyecto
     const [project] = selectedProject
@@ -18,6 +18,13 @@ const Task = ({ task }) => {
     const taskDelete = id => {
         deleteTask(id)
         getTasks(project.id)
+    }
+
+    // Funcion que cambia el status de la tarea
+    const toggleStatus = status => {
+        if (task.status) { task.status = false }
+        else { task.status = true }
+        toggleTaskStatus(task)
     }
 
     return (
@@ -30,6 +37,7 @@ const Task = ({ task }) => {
                             <button
                                 type="button"
                                 className="completo"
+                                onClick={() => toggleStatus(task)}
                             >Completo</button>
                         )
                         :
@@ -37,6 +45,7 @@ const Task = ({ task }) => {
                             <button
                                 type="button"
                                 className="incompleto"
+                                onClick={() => toggleStatus(task)}
                             >Incompleto</button>
                         )
                 }
@@ -49,7 +58,7 @@ const Task = ({ task }) => {
                 <button
                     type="button"
                     className="btn btn-secundario"
-                    onClick={()=> taskDelete(task.id)}
+                    onClick={() => taskDelete(task.id)}
                 >Eliminar</button>
             </div>
         </li>
