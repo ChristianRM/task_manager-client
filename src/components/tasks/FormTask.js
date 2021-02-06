@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import projectContext from "../../context/projects/projectContext";
 import taskContext from "../../context/tasks/taskContext";
 
@@ -9,7 +9,18 @@ const FormTask = () => {
 
     // Obtener la funcion del context de tareas
     const tasksContext = useContext(taskContext)
-    const { errorTask, addTask, taskValidation, getTasks } = tasksContext;
+    const { selectedTask, errorTask, addTask, taskValidation, getTasks, updateTask, deselectTask } = tasksContext;
+
+    // Effect que detecta si hay una tarea seleccionada
+    useEffect(() => {
+        if (selectedTask !== null) {
+            setTask(selectedTask)
+        } else {
+            setTask({
+                name: ''
+            })
+        }
+    }, [selectedTask])
 
     // State del formulario
     const [task, setTask] = useState({
@@ -37,17 +48,26 @@ const FormTask = () => {
         e.preventDefault();
 
         // Validar
-        if(name.trim()=== ''){
+        if (name.trim() === '') {
             taskValidation()
             return
         }
 
+        // Revisar si es edicion o es nueva tarea
+        if (selectedTask === null) {
+            // Agregar la nueva tarea al state de tareas
+            task.projectId = actualProject.id;
+            task.status = false
+            addTask(task)
+        } else {
+            // Actualizar tarea existente
+            updateTask(task)
+            // Elimina la seleccion de tarea
+            deselectTask()
+        }
+
         // Pasar validacion
 
-        // Agregar la nueva tarea al state de tareas
-        task.projectId = actualProject.id;
-        task.status = false
-        addTask(task)
 
         // Obtener y filtrar tareas del proyecto actual
         getTasks(actualProject.id)
@@ -76,12 +96,12 @@ const FormTask = () => {
                     <input
                         type="submit"
                         className="btn btn-block btn-submit btn-primario"
-                        value="Add Task"
+                        value={selectedTask ? 'Edit Task' : 'Add Task'}
                     >
                     </input>
                 </div>
             </form>
-            {errorTask? <p className="mensaje error">Task name should not be empty</p>: null}
+            {errorTask ? <p className="mensaje error">Task name should not be empty</p> : null}
         </div>
 
     );

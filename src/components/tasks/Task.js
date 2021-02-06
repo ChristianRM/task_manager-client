@@ -9,7 +9,7 @@ const Task = ({ task }) => {
 
     // Obtener la funcion del context de tareas
     const tasksContext = useContext(taskContext)
-    const { deleteTask, getTasks, toggleTaskStatus } = tasksContext;
+    const { deleteTask, getTasks, toggleTaskStatus, setSelectedTask } = tasksContext;
 
     // Extraer el proyecto
     const [project] = selectedProject
@@ -25,6 +25,11 @@ const Task = ({ task }) => {
         if (task.status) { task.status = false }
         else { task.status = true }
         toggleTaskStatus(task)
+    }
+
+    // Agrega una tarea actual cuando el usuario desea editarla
+    const selectTask = task => {
+        setSelectedTask(task)
     }
 
     return (
@@ -54,6 +59,7 @@ const Task = ({ task }) => {
                 <button
                     type="button"
                     className="btn btn-primario"
+                    onClick={()=>selectTask(task)}
                 >Editar</button>
                 <button
                     type="button"
