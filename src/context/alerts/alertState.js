@@ -20,11 +20,12 @@ const AlertState = props => {
             }
         })
 
+        // Despues de 5 segundos limpiar alerta
         setTimeout(() => {
             dispatch({
                 type: HIDE_ALERT
-            }, 5000)
-        })
+            })
+        }, 5000)
     }
 
     return (

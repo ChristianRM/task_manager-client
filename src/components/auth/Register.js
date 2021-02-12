@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import AlertContext from "../../context/alerts/alertContext";
+
 const Register = () => {
+    // Extraer valores del context
+    const alertContext = useContext(AlertContext)
+    const { alert, showAlert } = alertContext
+
     // State para iniciar sesion
     const [user, setUser] = useState({
-        name:'',
+        name: '',
         email: '',
         password: '',
-        confirm:''
+        confirm: ''
     });
 
     // Extraer usuario
@@ -15,7 +21,7 @@ const Register = () => {
     const onChange = e => {
         setUser({
             ...user,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
@@ -23,18 +29,39 @@ const Register = () => {
     const onSubmit = e => {
         e.preventDefault()
         // Validar que no haya campos vacios
+        if (
+            name.trim() === '' ||
+            email.trim() === '' ||
+            password.trim() === '' ||
+            confirm.trim() === ''
+        ) {
+            showAlert('All fields are needed', 'alerta-error')
+            return
+        }
+
         // Password debe ser mayor a 6 caracteres
+        if (password.length < 6) {
+            showAlert('Password must be at least 6 characters long', 'alerta-error')
+            return
+        }
+
         // El password debe coincidir en ambos campos
+        if (password !== confirm) {
+            showAlert('Passwords don\'t match', 'alerta-error')
+            return
+        }
+
         // Pasarlo al action
     }
 
     return (
         <div className="form-usuario">
+            { alert ? (<div className={`alerta ${alert.category}`}> {alert.msg} </div>) : null}
             <div className="contenedor-form sombra-dark">
                 <h1>Register</h1>
                 <form
                     onSubmit={onSubmit}
-                    >
+                >
                     <div className="campo-form">
                         <label htmlFor="name">Name</label>
                         <input
@@ -73,7 +100,7 @@ const Register = () => {
                         <input
                             type="password"
                             id="confirm"
-                            name="password"
+                            name="confirm"
                             placeholder="Re-type your password"
                             value={confirm}
                             onChange={onChange}
