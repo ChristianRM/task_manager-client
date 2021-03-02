@@ -1,6 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/auth/authContext'
+
 const Login = () => {
+    // Extraer valores del context
+    const alertContext = useContext(AlertContext)
+    const { alert, showAlert } = alertContext
+
+    const authContext = useContext(AuthContext)
+    const { message, authenticated, login } = authContext
+
     // State para iniciar sesion
     const [user, setUser] = useState({
         email: '',
@@ -13,7 +23,7 @@ const Login = () => {
     const onChange = e => {
         setUser({
             ...user,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
@@ -21,16 +31,21 @@ const Login = () => {
     const onSubmit = e => {
         e.preventDefault()
         // Validar que no haya campos vacios
+        if (email.trim() === '' || password.trim() === '') {
+            showAlert('All fields are required', 'alerta-error')
+        }
         // Pasarlo al action
+        login({ email, password })
     }
 
     return (
         <div className="form-usuario">
+            { alert ? (<div className={`alerta ${alert.category}`}> {alert.msg} </div>) : null}
             <div className="contenedor-form sombra-dark">
                 <h1>Login</h1>
                 <form
                     onSubmit={onSubmit}
-                    >
+                >
                     <div className="campo-form">
                         <label htmlFor="email">Email</label>
                         <input
