@@ -1,4 +1,4 @@
-import { HIDE_ALERT, SHOW_ALERT } from "../../types";
+import { HIDE_ALERT, SHOW_ALERT } from '../../types';
 
 // eslint-disable-next-line
 export default (state, action) => {

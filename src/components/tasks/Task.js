@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import projectContext from "../../context/projects/projectContext";
-import taskContext from "../../context/tasks/taskContext";
+import { useContext } from 'react';
+import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
 
 const Task = ({ task }) => {
     // Extraer si un proyecto esta activo
@@ -59,7 +59,7 @@ const Task = ({ task }) => {
                 <button
                     type="button"
                     className="btn btn-primario"
-                    onClick={()=>selectTask(task)}
+                    onClick={() => selectTask(task)}
                 >Editar</button>
                 <button
                     type="button"

@@ -3,11 +3,11 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Projects from './components/projects/Projects'
 
-import ProjectState from "./context/projects/projectState";
-import TaskState from "./context/tasks/taskState";
-import AlertState from "./context/alerts/alertState";
-import AuthState from "./context/auth/authState";
-import tokenAuth from "./config/tokenAuth"
+import ProjectState from './context/projects/projectState';
+import TaskState from './context/tasks/taskState';
+import AlertState from './context/alerts/alertState';
+import AuthState from './context/auth/authState';
+import tokenAuth from './config/tokenAuth'
 
 // Revisar si tenemos un token
 const token = localStorage.getItem('token')

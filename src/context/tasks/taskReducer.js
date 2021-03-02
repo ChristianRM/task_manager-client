@@ -7,7 +7,7 @@ import {
     TASK_STATUS,
     TASK_VALIDATION,
     UPDATE_TASK
-} from "../../types";
+} from '../../types';
 
 // eslint-disable-next-line
 export default (state, action) => {

@@ -1,9 +1,9 @@
-import { useReducer } from "react";
-import TaskContext  from './taskContext';
-import TaskReducer from "./taskReducer";
+import { useReducer } from 'react';
+import TaskContext from './taskContext';
+import TaskReducer from './taskReducer';
 import { v4 as uuid } from 'uuid';
 
-import { 
+import {
     TASKS_PROJECT,
     ADD_TASK,
     TASK_VALIDATION,
@@ -12,7 +12,7 @@ import {
     SELECTED_TASK,
     UPDATE_TASK,
     DESELECT_TASK
- } from "../../types";
+} from '../../types';
 
 const TaskState = props => {
     const initialState = {
@@ -20,15 +20,15 @@ const TaskState = props => {
             { id: 0, name: 'Choose platform', status: true, projectId: 1 },
             { id: 1, name: 'Choose colors', status: true, projectId: 2 },
             { id: 2, name: 'Choose payment', status: false, projectId: 3 },
-            { id: 3, name: 'Choose hosting', status: false,projectId: 4 },
+            { id: 3, name: 'Choose hosting', status: false, projectId: 4 },
             { id: 4, name: 'Choose platform', status: true, projectId: 2 },
             { id: 5, name: 'Choose colors', status: true, projectId: 3 },
             { id: 6, name: 'Choose payment', status: false, projectId: 3 },
-            { id: 7, name: 'Choose hosting', status: false,projectId: 4 },
+            { id: 7, name: 'Choose hosting', status: false, projectId: 4 },
             { id: 8, name: 'Choose platform', status: true, projectId: 2 },
             { id: 9, name: 'Choose colors', status: true, projectId: 1 },
             { id: 10, name: 'Choose payment', status: false, projectId: 1 },
-            { id: 11, name: 'Choose hosting', status: false,projectId: 2 },
+            { id: 11, name: 'Choose hosting', status: false, projectId: 2 },
         ],
         tasksProject: null,
         errorTask: false,
@@ -37,11 +37,11 @@ const TaskState = props => {
 
     // Crear dispatch y state
     const [state, dispatch] = useReducer(TaskReducer, initialState)
-    
+
     // Crear las funciones
 
     // Obtenet las tareas de un proyecto
-    const  getTasks = projectId => {
+    const getTasks = projectId => {
         dispatch({
             type: TASKS_PROJECT,
             payload: projectId
@@ -105,20 +105,20 @@ const TaskState = props => {
 
     return (
         <TaskContext.Provider
-        value={{
-            tasks: state.tasks,
-            tasksProject: state.tasksProject,
-            errorTask: state.errorTask,
-            selectedTask: state.selectedTask,
-            getTasks,
-            addTask,
-            taskValidation,
-            deleteTask,
-            toggleTaskStatus,
-            setSelectedTask,
-            updateTask,
-            deselectTask
-        }}>
+            value={{
+                tasks: state.tasks,
+                tasksProject: state.tasksProject,
+                errorTask: state.errorTask,
+                selectedTask: state.selectedTask,
+                getTasks,
+                addTask,
+                taskValidation,
+                deleteTask,
+                toggleTaskStatus,
+                setSelectedTask,
+                updateTask,
+                deselectTask
+            }}>
             {props.children}
         </TaskContext.Provider>
     )

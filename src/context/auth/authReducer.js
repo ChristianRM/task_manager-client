@@ -5,7 +5,7 @@ import {
     LOGIN_SUCCESSFUL,
     LOGIN_ERROR,
     LOG_OUT
-} from "../../types";
+} from '../../types';
 
 // eslint-disable-next-line
 export default (state, action) => {

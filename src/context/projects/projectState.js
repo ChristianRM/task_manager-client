@@ -1,15 +1,15 @@
-import { useReducer } from "react";
+import { useReducer } from 'react';
 import { v4 as uuid } from 'uuid';
-import projectContext from "./projectContext";
-import projectReducer from "./projectReducer";
-import { 
+import projectContext from './projectContext';
+import projectReducer from './projectReducer';
+import {
     FORM_PROJECT,
     GET_PROJECTS,
     ADD_PROJECT,
     FORM_VALIDATION,
     SELECTED_PROJECT,
     DELETE_PROJECT
-} from "../../types";
+} from '../../types';
 
 
 
@@ -21,7 +21,7 @@ const ProjectState = props => {
     ]
 
     const initialState = {
-        projects:  [],
+        projects: [],
         form: false,
         formError: false,
         selectedProject: null
@@ -56,7 +56,7 @@ const ProjectState = props => {
     }
 
     // Valida el formulario por errores
-    const showError  = () => {
+    const showError = () => {
         dispatch({
             type: FORM_VALIDATION
         })

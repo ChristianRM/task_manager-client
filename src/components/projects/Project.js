@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import projectContext from "../../context/projects/projectContext";
-import taskContext from "../../context/tasks/taskContext";
+import { useContext } from 'react';
+import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
 
 const Project = ({ project }) => {
     // Obtener el state del formulario

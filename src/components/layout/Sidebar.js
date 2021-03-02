@@ -1,11 +1,11 @@
-import AddProject from "../projects/AddProject";
-import ListProjects from "../projects/ListProjects";
+import AddProject from '../projects/AddProject';
+import ListProjects from '../projects/ListProjects';
 
 const Sidebar = () => {
     return (
         <aside>
             <h1>MERN<span>Tasks</span></h1>
-            <AddProject/>
+            <AddProject />
             <div className="proyectos">
                 <h2>
                     Tus proyectos

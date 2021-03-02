@@ -12,7 +12,7 @@ import {
     LOGIN_SUCCESSFUL,
     LOGIN_ERROR,
     LOG_OUT
-} from "../../types";
+} from '../../types';
 
 
 const AuthState = props => {
