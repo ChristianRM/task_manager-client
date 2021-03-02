@@ -101,7 +101,8 @@ const AuthState = props => {
                 user: state.user,
                 message: state.message,
                 registerUser,
-                login
+                login,
+                authenticatedUser
             }}>
             {props.children}
         </AuthContext.Provider>
