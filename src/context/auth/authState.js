@@ -29,7 +29,6 @@ const AuthState = props => {
     const registerUser = async data => {
         try {
             const response = await clientAxios.post('/api/users', data)
-            console.log(response)
             dispatch({
                 type: REGISTRATION_SUCCESSFUL,
                 payload: response.data
@@ -74,10 +73,15 @@ const AuthState = props => {
     const login = async data => {
         try {
             const response = await clientAxios.post('/api/auth', data)
-            console.log(response)
+            dispatch({
+                type: LOGIN_SUCCESSFUL,
+                payload: response.data
+            })
+
+            // Obtener usuario
+            authenticatedUser()
 
         } catch (error) {
-            console.log(error.response.data.msg)
             const alert = {
                 msg: error.response.data.msg,
                 category: 'alerta-error'

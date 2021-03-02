@@ -10,6 +10,7 @@ import {
 // eslint-disable-next-line
 export default (state, action) => {
     switch (action.type) {
+        case LOGIN_SUCCESSFUL:
         case REGISTRATION_SUCCESSFUL:
             localStorage.setItem('token', action.payload.token)
             return {
