@@ -39,11 +39,16 @@ const ProjectState = props => {
     }
 
     // Obtener los proyectos
-    const getProjects = () => {
-        dispatch({
-            type: GET_PROJECTS,
-            payload: projects
-        })
+    const getProjects = async () => {
+        try {
+            const result = await clientAxios.get('/api/projects')
+            dispatch({
+                type: GET_PROJECTS,
+                payload: result.data.projects
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     // Agregar nuevo proyecto
