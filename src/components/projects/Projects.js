@@ -12,7 +12,7 @@ const Projects = () => {
 
     useEffect(() => {
         authenticatedUser()
-    })
+    },[])
 
     return (
         <div className="contenedor-app">
