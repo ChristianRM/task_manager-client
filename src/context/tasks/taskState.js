@@ -1,7 +1,6 @@
 import { useReducer } from 'react';
 import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import { v4 as uuid } from 'uuid';
 
 import {
     TASKS_PROJECT,
@@ -14,23 +13,11 @@ import {
     DESELECT_TASK
 } from '../../types';
 
+import clientAxios from '../../config/axios'
+
 const TaskState = props => {
     const initialState = {
-        tasks: [
-            { id: 0, name: 'Choose platform', status: true, projectId: 1 },
-            { id: 1, name: 'Choose colors', status: true, projectId: 2 },
-            { id: 2, name: 'Choose payment', status: false, projectId: 3 },
-            { id: 3, name: 'Choose hosting', status: false, projectId: 4 },
-            { id: 4, name: 'Choose platform', status: true, projectId: 2 },
-            { id: 5, name: 'Choose colors', status: true, projectId: 3 },
-            { id: 6, name: 'Choose payment', status: false, projectId: 3 },
-            { id: 7, name: 'Choose hosting', status: false, projectId: 4 },
-            { id: 8, name: 'Choose platform', status: true, projectId: 2 },
-            { id: 9, name: 'Choose colors', status: true, projectId: 1 },
-            { id: 10, name: 'Choose payment', status: false, projectId: 1 },
-            { id: 11, name: 'Choose hosting', status: false, projectId: 2 },
-        ],
-        tasksProject: null,
+        tasksProject: [],
         errorTask: false,
         selectedTask: null
     }
@@ -41,20 +28,31 @@ const TaskState = props => {
     // Crear las funciones
 
     // Obtenet las tareas de un proyecto
-    const getTasks = projectId => {
-        dispatch({
-            type: TASKS_PROJECT,
-            payload: projectId
-        })
+    const getTasks = async project => {
+        try {
+            const result = await clientAxios.get('/api/tasks', { params: { project } })
+            console.log(result)
+            dispatch({
+                type: TASKS_PROJECT,
+                payload: result.data.tasks
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     // Agregar tarea al proyecto seleccionado
-    const addTask = task => {
-        task.id = uuid()
-        dispatch({
-            type: ADD_TASK,
-            payload: task
-        })
+    const addTask = async task => {
+        try {
+            const result = await clientAxios.post('/api/tasks', task)
+            console.log(result)
+            dispatch({
+                type: ADD_TASK,
+                payload: task
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     // Valida y muestra un error en caso que sea necesario
@@ -106,7 +104,6 @@ const TaskState = props => {
     return (
         <TaskContext.Provider
             value={{
-                tasks: state.tasks,
                 tasksProject: state.tasksProject,
                 errorTask: state.errorTask,
                 selectedTask: state.selectedTask,
