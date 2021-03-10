@@ -5,6 +5,7 @@ import {
     FORM_PROJECT,
     GET_PROJECTS,
     ADD_PROJECT,
+    PROJECT_ERROR,
     FORM_VALIDATION,
     SELECTED_PROJECT,
     DELETE_PROJECT
@@ -25,7 +26,8 @@ const ProjectState = props => {
         projects: [],
         form: false,
         formError: false,
-        selectedProject: null
+        selectedProject: null,
+        message: null
     }
 
     // Dispatch para ejecutar las acciones
@@ -89,7 +91,14 @@ const ProjectState = props => {
                 payload: projectId
             })
         } catch (error) {
-            console.log(error)
+            const alert = {
+                msg: 'Something went wrong',
+                category: 'alerta-error'
+            }
+            dispatch({
+                type: PROJECT_ERROR,
+                payload: alert
+            })
         }
     }
 
@@ -101,12 +110,13 @@ const ProjectState = props => {
                 form: state.form,
                 formError: state.formError,
                 selectedProject: state.selectedProject,
+                message: state.message,
                 showForm,
                 getProjects,
                 addProject,
                 showError,
                 selectProject,
-                deleteProject
+                deleteProject,
             }}>
             {props.children}
         </projectContext.Provider>
