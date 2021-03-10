@@ -33,11 +33,6 @@ export default (state, action) => {
                 ...state,
                 tasksProject: state.tasksProject.filter(task => task._id !== action.payload)
             }
-        case TASK_STATUS:
-            return {
-                ...state,
-                tasksProject: state.tasksProject.map(task => task.id === action.payload.id ? action.payload : task)
-            }
         case SELECTED_TASK:
             return {
                 ...state,
@@ -46,7 +41,7 @@ export default (state, action) => {
         case UPDATE_TASK:
             return {
                 ...state,
-                tasksProject: state.tasksProject.map(task => task.id === action.payload.id ? action.payload : task)
+                tasksProject: state.tasksProject.map(task => task._id === action.payload._id ? action.payload : task)
             }
         case DESELECT_TASK:
             return {

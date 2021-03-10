@@ -75,14 +75,18 @@ const TaskState = props => {
         }
     }
 
-    // Cambia el status de la tarea
-    const toggleTaskStatus = task => {
-        dispatch({
-            type: TASK_STATUS,
-            payload: task
-        })
+    // Edita una tarea
+    const updateTask = async task => {
+        try {
+            const result = await clientAxios.put(`/api/tasks/${task._id}`, task)
+            dispatch({
+                type: UPDATE_TASK,
+                payload: result.data.task
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
-
     // Extrae una tarea para edicion
     const setSelectedTask = task => {
         dispatch({
@@ -91,13 +95,6 @@ const TaskState = props => {
         })
     }
 
-    // Edita una tarea
-    const updateTask = task => {
-        dispatch({
-            type: UPDATE_TASK,
-            payload: task
-        })
-    }
 
     // Elimina la seleccion de tarea
     const deselectTask = () => {
@@ -116,7 +113,6 @@ const TaskState = props => {
                 addTask,
                 taskValidation,
                 deleteTask,
-                toggleTaskStatus,
                 setSelectedTask,
                 updateTask,
                 deselectTask
