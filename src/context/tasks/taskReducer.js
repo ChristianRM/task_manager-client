@@ -4,7 +4,6 @@ import {
     DESELECT_TASK,
     SELECTED_TASK,
     TASKS_PROJECT,
-    TASK_STATUS,
     TASK_VALIDATION,
     UPDATE_TASK
 } from '../../types';
