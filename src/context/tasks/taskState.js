@@ -24,9 +24,7 @@ const TaskState = props => {
     // Crear dispatch y state
     const [state, dispatch] = useReducer(TaskReducer, initialState)
 
-    // Crear las funciones
-
-    // Obtenet las tareas de un proyecto
+    // Obtener las tareas de un proyecto
     const getTasks = async project => {
         try {
             const result = await clientAxios.get('/api/tasks', { params: { project } })
