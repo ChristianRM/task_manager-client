@@ -1,4 +1,39 @@
-# Getting Started with Create React App
+# MERN Task Manager
+
+
+## Managing Tasks
+
+The main objective of this product is to provide the ability to keep track of projects and their pending tasks.
+
+Users have the options to create projects and list multiple tasks, which can be marked as complete/incomplete. Tasks include the four basic CRUD (Create, Read, Update, Delete) operations. The application has user authentication.
+
+
+## The Stack
+REST API based on the MERN stack:
+
+Mongo
+
+Express
+
+React
+
+Node
+
+## Repositories
+This repo contains the Front-End of the projects, the Back-End can be found [here](hhttps://github.com/ChristianRM/task_manager-server)
+
+
+## Screenshots
+
+<img src="https://gist.github.com/ChristianRM/2143409aa2bce57a797825a87a67048a/raw/90eb19e6c07e18ab336486b089268bf8746bddd4/auth.png" alt="Login page">
+
+<img src="https://gist.github.com/ChristianRM/2143409aa2bce57a797825a87a67048a/raw/90eb19e6c07e18ab336486b089268bf8746bddd4/dashboard.png" alt="Login page">
+
+
+---
+
+
+## React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
