@@ -85,7 +85,7 @@ const FormTask = () => {
                     <input
                         type="text"
                         className="input-text"
-                        placeholder="Nombre de tarea"
+                        placeholder="Task name"
                         name="name"
                         value={name}
                         onChange={handleChange}

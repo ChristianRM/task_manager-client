@@ -43,7 +43,7 @@ const Task = ({ task }) => {
                                 type="button"
                                 className="completo"
                                 onClick={() => toggleStatus(task)}
-                            >Completo</button>
+                            >Complete</button>
                         )
                         :
                         (
@@ -51,7 +51,7 @@ const Task = ({ task }) => {
                                 type="button"
                                 className="incompleto"
                                 onClick={() => toggleStatus(task)}
-                            >Incompleto</button>
+                            >Incomplete</button>
                         )
                 }
             </div>
@@ -60,12 +60,12 @@ const Task = ({ task }) => {
                     type="button"
                     className="btn btn-primario"
                     onClick={() => selectTask(task)}
-                >Editar</button>
+                >Edit</button>
                 <button
                     type="button"
                     className="btn btn-secundario"
                     onClick={() => taskDelete(task._id)}
-                >Eliminar</button>
+                >Delete</button>
             </div>
         </li>
     );
